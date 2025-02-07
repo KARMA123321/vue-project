@@ -4,7 +4,7 @@ import { useAuthStore } from "@/stores/auth";
 import { ref, defineProps } from "vue";
 import { useRouter } from "vue-router";
 
-const { email, password} = defineProps({
+const { email, password } = defineProps({
   email: String,
   password: String,
 });
@@ -37,14 +37,24 @@ function submitHandler() {
   <form @submit.prevent="submitHandler">
     <div class="input">
       <label for="email">Email</label>
-      <input v-model.lazy.trim="authData.email" type="email" id="email" name="email" />
+      <input v-model.lazy.trim="authData.email" type="email" id="email" name="email" required />
     </div>
     <div class="input">
       <label for="password">Password</label>
-      <input v-model.lazy="authData.password" type="password" id="password" name="password" />
+      <input
+        v-model.lazy="authData.password"
+        type="password"
+        id="password"
+        name="password"
+        required
+      />
     </div>
-    <input type="submit" value="Submit" />
-    <p class="msg" :class="{ visible: isError }">
+    <input
+      type="submit"
+      value="Submit"
+      :class="{ highlight: authData.email && authData.password }"
+    />
+    <p :class="['msg', { visible: isError }]">
       {{ "Login or password is incorrect" }}
     </p>
   </form>
@@ -62,6 +72,10 @@ form {
   flex-direction: column;
 }
 
+.highlight {
+  animation: blink 1.5s linear infinite;
+}
+
 input[type="submit"] {
   margin-block-start: 20px;
   width: 6rem;
@@ -77,9 +91,22 @@ input[type="submit"] {
   background-color: white;
   border-radius: 5px;
   padding: 5px;
+  text-align: center;
 }
 
 .msg.visible {
   visibility: visible;
+}
+
+@keyframes blink {
+  0% {
+    box-shadow: 0px 0px 0px 2px whitesmoke;
+  }
+  50% {
+    box-shadow: 0px 0px 2px 4px whitesmoke;
+  }
+  100% {
+    box-shadow: 0px 0px 4px 6px whitesmoke;
+  }
 }
 </style>
