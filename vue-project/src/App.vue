@@ -1,9 +1,13 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div id="#app">
+  <div id="app-wrapper">
     <RouterView />
   </div>
 </template>
 
-<style lang="css"></style>
+<style lang="css">
+  #app-wrapper {
+    height: 100vh;
+  }
+</style>
