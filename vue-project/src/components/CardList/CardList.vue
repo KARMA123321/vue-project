@@ -1,30 +1,32 @@
 <script setup lang="ts">
+import AddCard from "../AddCard/AddCard.vue";
 import Card from "../Card/Card.vue";
 import { type CardProps } from "../Card/props";
+import { useCardEditStore } from "@/stores/card";
+
+const { edit } = useCardEditStore();
 
 defineProps<{ cards: CardProps[] }>();
 </script>
 
 <template>
   <div class="card-list-wrapper">
-    <Card class="card" v-for="card in cards" v-bind="card" />
+    <Card
+      class="card"
+      v-for="card in cards"
+      v-bind="card"
+      @click="edit(card.id)"
+    />
+    <AddCard class="card"></AddCard>
   </div>
 </template>
 
 <style lang="css" scoped>
 .card-list-wrapper {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-@media (max-width: 400px) {
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
 }
 
 .card {

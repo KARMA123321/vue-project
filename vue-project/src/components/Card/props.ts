@@ -1,3 +1,5 @@
-import Card from "./Card.vue";
-
-export type CardProps = InstanceType<typeof Card>["$props"];
+export type CardProps = {
+  id: number;
+  title: string;
+  content?: string;
+};

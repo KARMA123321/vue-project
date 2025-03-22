@@ -1,3 +1,3 @@
-import type CardList from "./CardList.vue";
+import type { CardProps } from "../Card/props";
 
-export type CardListProps = InstanceType<typeof CardList>["$props"][];
+export type CardListProps = CardProps[];

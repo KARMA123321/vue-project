@@ -16,7 +16,7 @@
 }
 
 :root {
-  --outline-primary-color: linear-gradient(hsla(210deg 45% 75% / 50%) 0, hsla(210deg 45% 75% / 100%) 50% 100%);
+  --border-primary-color: hsla(210deg 45% 75% / 100%);
 }
 
 #app {

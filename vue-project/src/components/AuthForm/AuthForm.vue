@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import { users } from "@/constants/auth-data";
+import type { StrictOmit } from "@/constants/omit-extension";
 import { useAuthStore } from "@/stores/auth";
 import { ref, defineProps } from "vue";
 import { useRouter } from "vue-router";
 
-const { email, password } = defineProps({
+const props = defineProps({
   email: String,
   password: String,
 });
 
 const router = useRouter();
 
-const authData = ref({
-  email,
-  password,
+const authData = ref<typeof props>({
+  email: props.email,
+  password: props.password,
 });
 const isError = ref(false);
 

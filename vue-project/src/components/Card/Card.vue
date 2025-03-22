@@ -1,15 +1,19 @@
 <script setup lang="ts">
-defineProps<{
+import { computed } from 'vue';
+
+const props = defineProps<{
   id: number;
   title: string;
   content?: string;
 }>();
+
+const actualContent = computed(() => !props.content ? 'Enter the description here' : props.content);
 </script>
 
 <template>
   <div class="card-wrapper">
     <h3 class="title">{{ title }}</h3>
-    <p :class="['content', { placeholder: !content }]" >{{ content || "Enter the description here..." }}</p>
+    <p :class="['content', { placeholder: !content }]" >{{ actualContent }}</p>
   </div>
 </template>
 
@@ -21,6 +25,11 @@ defineProps<{
   padding: 15px;
   background-color: var(--secondary-bg-color);
   border-radius: 10px;
+  border: 3px solid transparent;
+}
+
+.card-wrapper:hover {
+  border: 3px solid var(--border-primary-color);
 }
 
 .title,
