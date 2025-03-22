@@ -4,12 +4,10 @@ import { computed } from "vue";
 
 const { edit } = useCardEditStore();
 const { currentCards } = useCardsStore();
-
-const id = computed(() => currentCards.length + 1);
 </script>
 
 <template>
-  <div class="add-card-wrapper" @click="edit(id)">
+  <div class="add-card-wrapper" @click="edit(currentCards.length + 1)">
     <span>+</span>
   </div>
 </template>

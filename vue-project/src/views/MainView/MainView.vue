@@ -39,7 +39,7 @@ watch(
   </div>
   <CardModal
     v-if="isModalOpened"
-    v-bind="currentCards.find((card) => card.id === cardId) ?? { id: 0, title: '' }"
+    v-bind="currentCards.find((card) => card.id === cardId) ?? { id: cardId!, title: '' }"
   />
 </template>
 
