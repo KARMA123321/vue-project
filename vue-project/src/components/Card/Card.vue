@@ -32,7 +32,7 @@ function toggleHovered(e: MouseEvent) {
   >
     <div class="title-wrapper">
       <h3 class="title">{{ title }}</h3>
-      <div class="delete-btn" v-if="hovered" @click.stop="removeCard(id)">
+      <div class="delete-btn" v-if="hovered || $isMobile()" @click.stop="removeCard(id)">
         <h3>X</h3>
       </div>
     </div>
