@@ -32,7 +32,7 @@ function handleSubmit() {
       <button class="close" @click="stopEdit">X</button>
       <div class="title">
         <label for="title">Title</label>
-        <input type="text" id="title" name="title" v-model.trim="card.title"></input>
+        <input type="text" id="title" name="title" v-model.trim="card.title" required></input>
       </div>
       <div class="content">
         <label for="content">Content</label>

@@ -49,12 +49,12 @@ watch(
   flex: 1;
   justify-content: center;
   align-items: flex-start;
-  height: 100%;
+  padding: 50px;
+  min-height: 100%;
 }
 
 .list {
   width: 80%;
-  margin-block-start: 50px;
 }
 
 .modal-opened {

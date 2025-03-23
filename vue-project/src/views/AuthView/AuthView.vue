@@ -37,6 +37,7 @@ main {
 
 .wrapper {
   width: 30%;
+  min-width: 300px;
   border-radius: 20px;
   background-color: var(--secondary-bg-color);
   padding: 50px;

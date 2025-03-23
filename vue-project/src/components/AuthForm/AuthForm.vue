@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { users } from "@/constants/auth-data";
-import type { StrictOmit } from "@/constants/omit-extension";
 import { useAuthStore } from "@/stores/auth";
 import { ref, defineProps } from "vue";
 import { useRouter } from "vue-router";
@@ -65,12 +64,15 @@ function submitHandler() {
 form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
+  min-width: 80%;
 }
 
 .input {
   display: flex;
   flex-direction: column;
+  width: 90%;
 }
 
 .highlight {
