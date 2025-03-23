@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useCardEditStore, useCardsStore } from '@/stores/card';
 import { type CardProps } from '../Card/props';
-import { computed, ref, useTemplateRef, watch } from 'vue';
-import { getRemValue } from '@/constants/helpers';
+import { ref, watch } from 'vue';
 
 const props = defineProps<CardProps>();
 
@@ -14,11 +13,6 @@ watch(() => props, (newProps) => {
 
 const { stopEdit } = useCardEditStore();
 const { setCard } = useCardsStore();
-
-const form = useTemplateRef("form");
-const formHeight = computed(() => form.value?.getBoundingClientRect().height ?? 1);
-
-const rem = getRemValue();
 
 function handleSubmit() {
   setCard(card.value);
@@ -35,8 +29,8 @@ function handleSubmit() {
         <input type="text" id="title" name="title" v-model.trim="card.title" required></input>
       </div>
       <div class="content">
-        <label for="content">Content</label>
-        <textarea id="content" name="content" :rows="formHeight * 0.4 / rem" v-model.trim="card.content"></textarea>
+        <label for="content">Description</label>
+        <textarea id="content" name="content" v-model.trim="card.content"></textarea>
       </div>
       <input type="submit" value="Save" />
     </form>
@@ -68,12 +62,24 @@ function handleSubmit() {
   height: 60%;
 }
 
+@media (max-width: 1024px) {
+  .edit-form {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+
 .title,
 .content {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 5px;
+}
+
+.content {
+  height: 75%;
 }
 
 .close {
@@ -86,5 +92,11 @@ function handleSubmit() {
   position: absolute;
   left: 15px;
   bottom: 15px;
+}
+
+textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
 }
 </style>
