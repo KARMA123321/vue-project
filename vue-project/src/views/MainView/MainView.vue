@@ -5,6 +5,7 @@ import { computed, watch } from "vue";
 import { useCardEditStore, useCardsStore } from "@/stores/card";
 import CardModal from "@/components/CardModal/CardModal.vue";
 import { storeToRefs } from "pinia";
+import { useCardId } from "@/composables/card/useCardId";
 
 const cards: CardProps[] = [
   { id: 1, title: "Card 1", content: "This is the first card" },
@@ -39,7 +40,12 @@ watch(
   </div>
   <CardModal
     v-if="isModalOpened"
-    v-bind="currentCards.find((card) => card.id === cardId) ?? { id: cardId!, title: '' }"
+    v-bind="
+      currentCards.find((card) => card.id === cardId) ?? {
+        id: useCardId(),
+        title: '',
+      }
+    "
   />
 </template>
 

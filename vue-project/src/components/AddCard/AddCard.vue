@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { useCardEditStore, useCardsStore } from "@/stores/card";
-import { computed } from "vue";
-
+import { useCardEditStore } from "@/stores/card";
+import { useCardId } from "@/composables/card/useCardId";
 const { edit } = useCardEditStore();
-const { currentCards } = useCardsStore();
 </script>
 
 <template>
-  <div class="add-card-wrapper" @click="edit(currentCards.length + 1)">
+  <div class="add-card-wrapper" @click="edit(useCardId())">
     <span>+</span>
   </div>
 </template>
@@ -21,6 +19,7 @@ const { currentCards } = useCardsStore();
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  user-select: none;  
 }
 
 .add-card-wrapper:hover {

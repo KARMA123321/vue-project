@@ -31,11 +31,9 @@ export const useCardsStore = defineStore("cards", () => {
   }
 
   function removeCard(id: number) {
-    console.log("removeCard", id);
     const index = currentCards.value.findIndex((c) => c.id === id);
 
     if (index !== -1) currentCards.value.splice(index, 1);
-    console.log("currentCards", currentCards.value);
   }
 
   return { currentCards, setCard, setCards, removeCard };
