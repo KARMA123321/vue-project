@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 import AuthView from "@/views/AuthView/AuthView.vue";
 import MainView from "@/views/MainView/MainView.vue";
+import { useAuthStore } from "@/stores/auth";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      redirect: "/auth"
+      redirect: "/auth",
     },
     {
       path: "/auth",
@@ -20,6 +21,16 @@ const router = createRouter({
       component: MainView,
     },
   ],
+});
+
+router.beforeEach((to, _, next) => {
+  const { isAuthenticated } = useAuthStore();
+
+  if (to.name === "auth" && isAuthenticated) {
+    next({ name: "main" });
+  } else {
+    next();
+  }
 });
 
 export default router;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { users } from "@/constants/auth-data";
+import { AuthApi } from "@/api/auth-api";
 import { useAuthStore } from "@/stores/auth";
 import { ref, defineProps } from "vue";
 import { useRouter } from "vue-router";
@@ -12,21 +12,26 @@ const props = defineProps({
 const router = useRouter();
 
 const authData = ref<typeof props>({
-  email: props.email,
-  password: props.password,
+  ...props,
 });
 const isError = ref(false);
 
 const auth = useAuthStore();
 
-function submitHandler() {
-  if (
-    users.valid.find(
-      (user) => user.email === authData.value.email && user.password === authData.value.password,
-    )
-  ) {
+async function submitHandler() {
+  if (!authData.value.email || !authData.value.password) {
+    isError.value = true;
+    return;
+  }
+  
+  const response = await AuthApi.login(
+    authData.value.email,
+    authData.value.password
+  );
+
+  if (response.ok) {
     auth.logIn();
-    router.push("/main");
+    router.replace("/main");
   } else {
     isError.value = true;
   }
@@ -67,6 +72,10 @@ form {
   align-items: center;
   gap: 20px;
   min-width: 80%;
+}
+
+label {
+  font-weight: 700;
 }
 
 .input {

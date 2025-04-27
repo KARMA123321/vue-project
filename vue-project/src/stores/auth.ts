@@ -1,16 +1,20 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 
-export const useAuthStore = defineStore("auth", () => {
-  const isAuthenticated = ref(false);
+export const useAuthStore = defineStore(
+  "auth",
+  () => {
+    const isAuthenticated = ref(false);
 
-  function logIn() {
-    isAuthenticated.value = true;
-  }
+    function logIn() {
+      isAuthenticated.value = true;
+    }
 
-  function logOut() {
-    isAuthenticated.value = false;
-  }
+    function logOut() {
+      isAuthenticated.value = false;
+    }
 
-  return { isAuthenticated, logIn, logOut };
-});
+    return { isAuthenticated, logIn, logOut };
+  },
+  { persist: true },
+);
