@@ -28,7 +28,11 @@ router.beforeEach((to, _, next) => {
 
   if (to.name === "auth" && isAuthenticated) {
     next({ name: "main" });
-  } else {
+  } 
+  else if (to.name === "main" && !isAuthenticated) {
+    next({ name: "auth" });
+  }
+  else {
     next();
   }
 });

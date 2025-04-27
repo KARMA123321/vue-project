@@ -6,6 +6,8 @@ import { useCardEditStore, useCardsStore } from "@/stores/card";
 import CardModal from "@/components/CardModal/CardModal.vue";
 import { storeToRefs } from "pinia";
 import { useCardId } from "@/composables/card/useCardId";
+import { useAuthStore } from "@/stores/auth";
+import { useRouter } from "vue-router";
 
 const cards: CardProps[] = [
   { id: 1, title: "Card 1", content: "This is the first card" },
@@ -21,9 +23,17 @@ const cards: CardProps[] = [
   },
 ];
 
+
+const { logOut } = useAuthStore();
+const router = useRouter();
 const { currentCards, setCards } = useCardsStore();
 const { cardId } = storeToRefs(useCardEditStore());
 const isModalOpened = computed(() => cardId.value !== null);
+
+function exitHandler() {
+  logOut();
+  router.replace("/");
+}
 
 watch(
   currentCards,
@@ -35,6 +45,7 @@ watch(
 </script>
 
 <template>
+  <button class="exit-btn" @click="exitHandler">Exit</button>
   <div :class="['main-view-wrapper', { 'modal-opened': isModalOpened }]">
     <CardList class="list" :cards="currentCards"></CardList>
   </div>
@@ -61,6 +72,24 @@ watch(
 
 .list {
   width: 80%;
+}
+
+.exit-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  background-color: var(--secondary-bg-color);
+  color: var(--primary-text-color);
+  border: none;
+  border-radius: 5px;
+  border: 3px solid transparent;
+  padding: 10px 20px;
+}
+
+.exit-btn:hover {
+  border: 3px solid var(--border-warning-color);
 }
 
 .modal-opened {

@@ -17,6 +17,7 @@
 
 :root {
   --border-primary-color: hsla(210deg 45% 75% / 100%);
+  --border-warning-color: hsla(10deg 65% 75% / 100%);
 }
 
 :root {
