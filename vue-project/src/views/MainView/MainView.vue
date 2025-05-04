@@ -99,4 +99,13 @@ watchEffect(() => {
 .exit-btn:hover {
   border: 3px solid var(--border-warning-color);
 }
+
+@media (max-width: 600px) {
+  .exit-btn {
+    top: 5px;
+    right: 5px;
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
+}
 </style>
