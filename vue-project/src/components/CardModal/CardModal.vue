@@ -2,6 +2,7 @@
 import { useCardEditStore, useCardsStore } from '@/stores/card';
 import { type CardProps } from '../Card/props';
 import { ref, watch } from 'vue';
+import { vOnClickOutside } from "@vueuse/components";
 
 const props = defineProps<CardProps>();
 
@@ -21,9 +22,9 @@ function handleSubmit() {
 </script>
 
 <template>
-  <Teleport to="body"">
+  <Teleport to="body">
     <div class="modal">
-      <form class="edit-form" ref="form" @submit.prevent="handleSubmit">
+      <form class="edit-form" ref="form" @submit.prevent="handleSubmit" v-on-click-outside="stopEdit">
         <button class="close" @click="stopEdit">X</button>
         <div class="title">
           <label for="title">Title</label>

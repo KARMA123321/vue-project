@@ -23,7 +23,6 @@ const cards: CardProps[] = [
   },
 ];
 
-
 const { logOut } = useAuthStore();
 const router = useRouter();
 const { currentCards, setCards } = useCardsStore();
