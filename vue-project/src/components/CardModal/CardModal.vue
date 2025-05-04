@@ -21,20 +21,22 @@ function handleSubmit() {
 </script>
 
 <template>
-  <div class="modal">
-    <form class="edit-form" ref="form" @submit.prevent="handleSubmit">
-      <button class="close" @click="stopEdit">X</button>
-      <div class="title">
-        <label for="title">Title</label>
+  <Teleport to="body"">
+    <div class="modal">
+      <form class="edit-form" ref="form" @submit.prevent="handleSubmit">
+        <button class="close" @click="stopEdit">X</button>
+        <div class="title">
+          <label for="title">Title</label>
         <input type="text" id="title" name="title" v-model.trim="card.title" required></input>
-      </div>
-      <div class="content">
-        <label for="content">Description</label>
-        <textarea id="content" name="content" v-model.trim="card.content"></textarea>
-      </div>
-      <input type="submit" value="Save" />
-    </form>
-  </div>
+        </div>
+        <div class="content">
+          <label for="content">Description</label>
+          <textarea id="content" name="content" v-model.trim="card.content"></textarea>
+        </div>
+        <input type="submit" value="Save" />
+      </form>
+    </div>
+  </Teleport>
 </template>
 
 <style lang="css" scoped>

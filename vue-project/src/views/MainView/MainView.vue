@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CardList from "@/components/CardList/CardList.vue";
 import { type CardProps } from "@/components/Card/props";
-import { computed, watch } from "vue";
+import { computed, watch, watchEffect } from "vue";
 import { useCardEditStore, useCardsStore } from "@/stores/card";
 import CardModal from "@/components/CardModal/CardModal.vue";
 import { storeToRefs } from "pinia";
@@ -42,11 +42,19 @@ watch(
   },
   { immediate: true, once: true },
 );
+
+watchEffect(() => {
+  if (isModalOpened.value) {
+    document.getElementById("app")!.style.overflow = "hidden";
+  } else {
+    document.getElementById("app")!.style.overflow = "";
+  }
+});
 </script>
 
 <template>
   <button class="exit-btn" @click="exitHandler">Exit</button>
-  <div :class="['main-view-wrapper', { 'modal-opened': isModalOpened }]">
+  <div class="main-view-wrapper">
     <CardList class="list" :cards="currentCards"></CardList>
   </div>
   <CardModal
@@ -90,9 +98,5 @@ watch(
 
 .exit-btn:hover {
   border: 3px solid var(--border-warning-color);
-}
-
-.modal-opened {
-  overflow-x: hidden;
 }
 </style>
