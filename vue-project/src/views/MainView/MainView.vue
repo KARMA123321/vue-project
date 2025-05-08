@@ -10,17 +10,17 @@ import { useAuthStore } from "@/stores/auth";
 import { useRouter } from "vue-router";
 
 const cards: CardProps[] = [
-  { id: 1, title: "Card 1", content: "This is the first card" },
-  { id: 2, title: "Card 2", content: "This is the second card" },
-  { id: 3, title: "Card 3", content: "This is the third card" },
-  { id: 4, title: "Card 4", content: "This is the fourth card" },
-  { id: 5, title: "Card 5", content: "" },
-  {
-    id: 6,
-    title: "Card 6",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-  },
+  // { id: 1, title: "Card 1", content: "This is the first card" },
+  // { id: 2, title: "Card 2", content: "This is the second card" },
+  // { id: 3, title: "Card 3", content: "This is the third card" },
+  // { id: 4, title: "Card 4", content: "This is the fourth card" },
+  // { id: 5, title: "Card 5", content: "" },
+  // {
+  //   id: 6,
+  //   title: "Card 6",
+  //   content:
+  //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+  // },
 ];
 
 const { logOut } = useAuthStore();
