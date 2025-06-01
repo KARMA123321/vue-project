@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { AuthApi } from "@/api/auth-api";
 import { useAuthStore } from "@/stores/auth";
-import { ref, defineProps } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const props = defineProps({

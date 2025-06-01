@@ -13,7 +13,7 @@ defineProps<{ cards: CardProps[] }>();
       v-for="card in cards"
       v-bind="card"
     />
-    <AddCard class="card"></AddCard>
+    <AddCard class="add-card"></AddCard>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ defineProps<{ cards: CardProps[] }>();
   justify-content: center;
 }
 
-.card {
+.card, .add-card {
   height: 300px;
   width: 300px;
 }
